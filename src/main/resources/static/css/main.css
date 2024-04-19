@@ -7,3 +7,24 @@
 label {
     font-weight: bold;
 }
+
+body{
+    font-family: 'Roboto', Didot;
+    background-color:#222222;
+    background-image: url("http://wallpapercave.com/wp/pEeUsp1.jpg");
+    font-size: 16px;
+    /*background-image: url("https://cdn.pixabay.com/photo/2020/09/13/19/22/uranus-5569168_1280.jpg");*/
+    margin: 0;
+    padding: 0;
+    color:yellowgreen;
+}
+
+#form-dialogue {
+    background-color: yellowgreen;
+}
+
+
+.card-body {
+    background-color: yellowgreen;
+
+}

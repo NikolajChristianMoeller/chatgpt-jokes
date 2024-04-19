@@ -1,15 +1,15 @@
 const SERVER_URL = 'http://localhost:8080/api/v1/';
 
 
-document.getElementById('form-joke').addEventListener('submit', getJoke);
-document.getElementById('form-joke2').addEventListener('submit', getJokeWithRateLimit);
+document.getElementById('form-dialogue').addEventListener('submit', getDialogue);
+document.getElementById('form-dialogue2').addEventListener('submit', getDialogueWithRateLimit);
 document.getElementById('form-answer').addEventListener('submit', getInfo);
 
-async function getJoke(event) {
+async function getDialogue(event) {
   // Prevent the form from reloading the page.
   event.preventDefault();
 
-  const URL = `${SERVER_URL}joke?about= + ${document.getElementById('about').value}`
+  const URL = `${SERVER_URL}dialogue?about= + ${document.getElementById('about').value}`
   const spinner = document.getElementById('spinner1');
   const result = document.getElementById('result');
   result.style.color = "black";
@@ -27,11 +27,11 @@ async function getJoke(event) {
   }
 }
 
-async function getJokeWithRateLimit(event) {
+async function getDialogueWithRateLimit(event) {
   // Prevent the form from reloading the page.
   event.preventDefault();
 
-  const URL = `${SERVER_URL}jokelimited?about= + ${document.getElementById('about2').value}`
+  const URL = `${SERVER_URL}dialoguelimited?about= + ${document.getElementById('about2').value}`
   const result2 = document.getElementById('result2');
   const spinner2 = document.getElementById('spinner2');
   result2.style.color = "black";

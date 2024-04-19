@@ -1,4 +1,4 @@
-package com.example.chatgptjokes.entity;
+package com.example.chatgptdialogues.entity;
 
 
 import jakarta.persistence.Entity;

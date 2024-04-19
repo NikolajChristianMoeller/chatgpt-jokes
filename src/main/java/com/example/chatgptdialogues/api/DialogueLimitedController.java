@@ -1,7 +1,7 @@
-package com.example.chatgptjokes.api;
+package com.example.chatgptdialogues.api;
 
-import com.example.chatgptjokes.dtos.MyResponse;
-import com.example.chatgptjokes.service.OpenAiService;
+import com.example.chatgptdialogues.dtos.MyResponse;
+import com.example.chatgptdialogues.service.OpenAiService;
 import io.github.bucket4j.Bandwidth;
 import io.github.bucket4j.Bucket;
 import io.github.bucket4j.Refill;
@@ -16,12 +16,12 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * This class handles fetching a joke via the ChatGPT API, but is IP-rate limited.
+ * This class handles fetching a dialogue via the ChatGPT API, but is IP-rate limited.
  */
 @RestController
-@RequestMapping("/api/v1/jokelimited")
+@RequestMapping("/api/v1/dialoguelimited")
 @CrossOrigin(origins = "*")
-public class JokeLimitedController {
+public class DialogueLimitedController {
 
   @Value("${app.bucket_capacity}")
   private int BUCKET_CAPACITY;
@@ -40,7 +40,7 @@ public class JokeLimitedController {
    * The controller called from the browser client.
    * @param service
    */
-  public JokeLimitedController(OpenAiService service) {
+  public DialogueLimitedController(OpenAiService service) {
     this.service=service;
   }
 
@@ -64,12 +64,12 @@ public class JokeLimitedController {
 
   /**
    * Handles the request from the browser.
-   * @param about about contains the input that ChatGPT uses to make a joke about.
+   * @param about about contains the input that ChatGPT uses to make a dialogue about.
    * @param request the current HTTP request used
    * @return the response from ChatGPT.
    */
   @GetMapping()
-  public MyResponse getJokeLimited(@RequestParam String about, HttpServletRequest request) {
+  public MyResponse getdialogueLimited(@RequestParam String about, HttpServletRequest request) {
 
     // Get the IP of the client.
     String ip = request.getRemoteAddr();
@@ -80,7 +80,7 @@ public class JokeLimitedController {
       // If not, tell the client "Too many requests".
       throw new ResponseStatusException(HttpStatus.TOO_MANY_REQUESTS, "Too many requests, try again later");
     }
-    // Otherwise request a joke and return the response.
-    return service.makeRequest(about, JokeController.SYSTEM_MESSAGE);
+    // Otherwise request a dialogue and return the response.
+    return service.makeRequest(about, DialogueController.SYSTEM_MESSAGE);
   }
 }
